@@ -11,10 +11,33 @@
 
 <form action="{{route('country.store')}}" method="POST" enctype="multipart/form-data">
   @csrf
+
+<ul class="nav nav-tabs">
+  @foreach ($language as $index => $l)
+        <li class="{{ $index ==  0 ? 'active' : ''  }}"><a data-toggle="tab" href="#{{$l->name}}">{{$l->name}}</a></li>
+  @endforeach
+
+</ul>
+
+<div class="tab-content">
+    @foreach ($language as $index => $l)
+
+  <div id="{{$l->name}}" class="tab-pane fade {{ $index ==  0 ? 'in active' : ''  }}">
+      <div class="form-group">
+    <label for="country[]">Country Name</label><span style="color: red !important; display: inline; float: none;"> 
+        <input name="countryname" type="text"  />
+
+  </div>
   <div class="form-group">
-    <label for="country">Country Name</label><span style="color: red !important; display: inline; float: none;"> 
-        
-            <select id="country" name="country" class="form-control">
+    <label for="Country Description">Country Description</label>
+	<textarea id="Country_Description" class="md-textarea form-control" rows="3"></textarea>
+  </div>
+  </div>
+
+    @endforeach
+</div>
+
+              <select id="country" name="country" class="form-control">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -260,11 +283,7 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
             </select>
-  </div>
-  <div class="form-group">
-    <label for="Country Description">Country Description</label>
-	<textarea id="Country_Description" class="md-textarea form-control" rows="3"></textarea>
-  </div>
+
   
     <div class="form-group">
     <label for="Country Map">Country Map</label>

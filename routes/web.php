@@ -18,6 +18,10 @@ Route::get('/', function () {
 Route::resource('category', 'categoryController');
 Route::get('delete/{id}','categoryController@destroy');
 
+
+//country 
+Route::resource('country', 'countryController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
