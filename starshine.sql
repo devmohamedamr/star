@@ -1,22 +1,14 @@
 /*
-Navicat MySQL Data Transfer
-
-Source Server         : Local
-Source Server Version : 50505
-Source Host           : localhost:3306
-Source Database       : starshine
-
-Target Server Type    : MYSQL
-Target Server Version : 50505
-File Encoding         : 65001
-
-Date: 2019-05-28 00:00:36
+MySQL Backup
+Source Server Version: 5.5.5
+Source Database: starshine
+Date: 5/29/2019 08:52:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `airline`
+--  Table structure for `airline`
 -- ----------------------------
 DROP TABLE IF EXISTS `airline`;
 CREATE TABLE `airline` (
@@ -24,15 +16,12 @@ CREATE TABLE `airline` (
   `airline_name` varchar(100) DEFAULT NULL,
   `airline_description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
+  `language_id` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of airline
--- ----------------------------
-
--- ----------------------------
--- Table structure for `car`
+--  Table structure for `car`
 -- ----------------------------
 DROP TABLE IF EXISTS `car`;
 CREATE TABLE `car` (
@@ -40,15 +29,13 @@ CREATE TABLE `car` (
   `car_name` varchar(100) DEFAULT NULL,
   `car_description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
+  `language_id` int(11) DEFAULT NULL,
+  `feature_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of car
--- ----------------------------
-
--- ----------------------------
--- Table structure for `category`
+--  Table structure for `category`
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
@@ -61,19 +48,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of category
--- ----------------------------
-INSERT INTO `category` VALUES ('1', 'hotel', 'hotel reservation ', null, '2');
-INSERT INTO `category` VALUES ('2', 'airline', 'flight reservtion', null, '2');
-INSERT INTO `category` VALUES ('3', 'restaurant', 'restaurant reservation', null, '2');
-INSERT INTO `category` VALUES ('4', 'seeder', null, null, '2');
-INSERT INTO `category` VALUES ('5', 'car rental', null, null, '2');
-INSERT INTO `category` VALUES ('6', 'ship rental ', null, null, '2');
-INSERT INTO `category` VALUES ('7', 'tourism programs', null, null, '2');
-INSERT INTO `category` VALUES ('8', '', null, null, null);
-
--- ----------------------------
--- Table structure for `city`
+--  Table structure for `city`
 -- ----------------------------
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
@@ -87,13 +62,7 @@ CREATE TABLE `city` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of city
--- ----------------------------
-INSERT INTO `city` VALUES ('1', 'cairo', 'cai', '1', '2');
-INSERT INTO `city` VALUES ('2', 'spain', 'sp', '2', '2');
-
--- ----------------------------
--- Table structure for `country`
+--  Table structure for `country`
 -- ----------------------------
 DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
@@ -107,13 +76,19 @@ CREATE TABLE `country` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of country
+--  Table structure for `feature`
 -- ----------------------------
-INSERT INTO `country` VALUES ('1', 'egypt', null, null, null, '2');
-INSERT INTO `country` VALUES ('2', 'spain', null, null, null, '2');
+DROP TABLE IF EXISTS `feature`;
+CREATE TABLE `feature` (
+  `id` int(11) NOT NULL,
+  `feature_name` varchar(100) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
+  `language_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Table structure for `hotel`
+--  Table structure for `hotel`
 -- ----------------------------
 DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE `hotel` (
@@ -122,32 +97,24 @@ CREATE TABLE `hotel` (
   `hotel_description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
+  `language_id` int(11) DEFAULT NULL,
+  `feature_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of hotel
--- ----------------------------
-
--- ----------------------------
--- Table structure for `language`
+--  Table structure for `language`
 -- ----------------------------
 DROP TABLE IF EXISTS `language`;
 CREATE TABLE `language` (
   `language_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(3) DEFAULT NULL,
+  `language_code` varchar(3) DEFAULT NULL,
+  `language_name` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`language_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of language
--- ----------------------------
-INSERT INTO `language` VALUES ('1', 'ar');
-INSERT INTO `language` VALUES ('2', 'en');
-INSERT INTO `language` VALUES ('3', 'ge');
-
--- ----------------------------
--- Table structure for `restaurant`
+--  Table structure for `restaurant`
 -- ----------------------------
 DROP TABLE IF EXISTS `restaurant`;
 CREATE TABLE `restaurant` (
@@ -156,15 +123,13 @@ CREATE TABLE `restaurant` (
   `restaurant_description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
+  `language_id` int(11) DEFAULT NULL,
+  `feature_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of restaurant
--- ----------------------------
-
--- ----------------------------
--- Table structure for `seeder`
+--  Table structure for `seeder`
 -- ----------------------------
 DROP TABLE IF EXISTS `seeder`;
 CREATE TABLE `seeder` (
@@ -173,15 +138,13 @@ CREATE TABLE `seeder` (
   `seeder_description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
+  `language_id` int(11) DEFAULT NULL,
+  `feature_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of seeder
--- ----------------------------
-
--- ----------------------------
--- Table structure for `ship`
+--  Table structure for `ship`
 -- ----------------------------
 DROP TABLE IF EXISTS `ship`;
 CREATE TABLE `ship` (
@@ -190,15 +153,13 @@ CREATE TABLE `ship` (
   `ship_description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
+  `language_id` int(11) DEFAULT NULL,
+  `feature_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of ship
--- ----------------------------
-
--- ----------------------------
--- Table structure for `tourism_locations`
+--  Table structure for `tourism_locations`
 -- ----------------------------
 DROP TABLE IF EXISTS `tourism_locations`;
 CREATE TABLE `tourism_locations` (
@@ -207,9 +168,15 @@ CREATE TABLE `tourism_locations` (
   `location_description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
+  `language_id` int(11) DEFAULT NULL,
+  `feature_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of tourism_locations
+--  Records 
 -- ----------------------------
+INSERT INTO `category` VALUES ('1','hotel','hotel reservation ',NULL,'2'), ('2','airline','flight reservtion',NULL,'2'), ('3','restaurant','restaurant reservation',NULL,'2'), ('4','seeder',NULL,NULL,'2'), ('5','car rental',NULL,NULL,'2'), ('6','ship rental ',NULL,NULL,'2'), ('7','tourism programs',NULL,NULL,'2'), ('8','',NULL,NULL,NULL);
+INSERT INTO `city` VALUES ('1','cairo','cai','1','2'), ('2','spain','sp','2','2');
+INSERT INTO `country` VALUES ('1','egypt',NULL,NULL,NULL,'2'), ('2','spain',NULL,NULL,NULL,'2');
+INSERT INTO `language` VALUES ('1','ar','arabic'), ('2','en','english'), ('3','ge','germany');
