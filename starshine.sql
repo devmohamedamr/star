@@ -84,6 +84,7 @@ CREATE TABLE `feature` (
   `feature_name` varchar(100) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
   `language_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
