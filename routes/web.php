@@ -28,3 +28,13 @@ Route::resource('feature', 'featureController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::get('/', function(){
+//    $config = array();
+//    $config['center'] = 'New York, USA';
+//    GMaps::initialize($config);
+//    $map = GMaps::create_map();
+//
+//    echo $map['js'];
+//    echo $map['html'];
+//});
