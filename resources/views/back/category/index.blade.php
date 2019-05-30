@@ -5,6 +5,12 @@
     <h1>category</h1>
     <div class="listar-description">
     </div>
+    <li> 
+    <a class="btn btn-success" href="{{route('category.create')}}">
+                            <i class="icon-plus"></i>
+                            <span>Add Category</span>
+                        </a>
+	</li>
 <br>
 	<table id="table_id" class="display">
     <thead>

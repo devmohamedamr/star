@@ -22,6 +22,9 @@ Route::get('delete/{id}','categoryController@destroy');
 //country 
 Route::resource('country', 'countryController');
 
+//feature 
+Route::resource('feature', 'featureController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
