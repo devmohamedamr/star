@@ -1,183 +1,361 @@
-/*
-MySQL Backup
-Source Server Version: 5.5.5
-Source Database: starshine
-Date: 5/29/2019 08:52:30
-*/
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 31, 2019 at 04:54 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
-SET FOREIGN_KEY_CHECKS=0;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
--- ----------------------------
---  Table structure for `airline`
--- ----------------------------
-DROP TABLE IF EXISTS `airline`;
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `starshine`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `airline`
+--
+
 CREATE TABLE `airline` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `airline_name` varchar(100) DEFAULT NULL,
-  `airline_description` varchar(1000) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
-  `language_id` varchar(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `language_id` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
---  Table structure for `car`
--- ----------------------------
-DROP TABLE IF EXISTS `car`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `car`
+--
+
 CREATE TABLE `car` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `car_name` varchar(100) DEFAULT NULL,
-  `car_description` varchar(1000) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
-  `language_id` int(11) DEFAULT NULL,
-  `feature_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `language_code` varchar(11) DEFAULT NULL,
+  `feature_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
---  Table structure for `category`
--- ----------------------------
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(50) NOT NULL,
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
   `description` varchar(500) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
   `language_id` int(3) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
---  Table structure for `city`
--- ----------------------------
-DROP TABLE IF EXISTS `city`;
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `title`, `description`, `image`, `language_id`, `created_at`, `updated_at`) VALUES
+(1, 'hotels', 'hotels', '1559306230.jpg', NULL, '2019-05-31 10:37:10', '2019-05-31 10:37:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `city`
+--
+
 CREATE TABLE `city` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `city_name` varchar(50) DEFAULT NULL,
-  `city_code` varchar(10) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
   `country_id` varchar(500) DEFAULT NULL,
   `language_id` int(3) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique` (`id`,`country_id`,`language_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `lan` varchar(100) DEFAULT NULL,
+  `lat` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
---  Table structure for `country`
--- ----------------------------
-DROP TABLE IF EXISTS `country`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `country`
+--
+
 CREATE TABLE `country` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `country_name` varchar(50) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `title` varchar(50) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
-  `country_map` varchar(150) DEFAULT NULL,
   `image` varchar(250) DEFAULT NULL,
-  `language_id` int(3) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `language_code` varchar(50) DEFAULT NULL,
+  `lan` varchar(100) DEFAULT NULL,
+  `lat` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
---  Table structure for `feature`
--- ----------------------------
-DROP TABLE IF EXISTS `feature`;
+--
+-- Dumping data for table `country`
+--
+
+INSERT INTO `country` (`id`, `title`, `description`, `image`, `language_code`, `lan`, `lat`) VALUES
+(1, 'egypt', 'egypt', 'egypt', '0', NULL, NULL),
+(2, 'asdsabmb', 'jbkjasbdsja', '1559311725.jpg', '0', NULL, NULL),
+(3, 'asdbkj', 'bjkbasd', '1559311725.jpg', '1', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cruise`
+--
+
+CREATE TABLE `cruise` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  `image` varchar(500) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `language_id` int(11) DEFAULT NULL,
+  `feature_id` int(11) DEFAULT NULL,
+  `lan` varchar(100) DEFAULT NULL,
+  `lat` varchar(100) DEFAULT NULL,
+  `price` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feature`
+--
+
 CREATE TABLE `feature` (
   `id` int(11) NOT NULL,
+  `f_id` int(11) NOT NULL,
   `feature_name` varchar(100) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
-  `language_id` int(11) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `language_code` varchar(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
---  Table structure for `hotel`
--- ----------------------------
-DROP TABLE IF EXISTS `hotel`;
+--
+-- Dumping data for table `feature`
+--
+
+INSERT INTO `feature` (`id`, `f_id`, `feature_name`, `description`, `language_code`, `category_id`) VALUES
+(1, 1, 'asdbsajh', 'ssdbdjsambm', 'arabic', 1),
+(2, 1, 'asdnsak', 'sjksdhfjskand', 'english', 1),
+(3, 1, 'asdbsaj', 'nbasd', 'germany', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hotel`
+--
+
 CREATE TABLE `hotel` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `hotel_name` varchar(100) DEFAULT NULL,
-  `hotel_description` varchar(1000) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   `language_id` int(11) DEFAULT NULL,
-  `feature_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `lan` varchar(100) DEFAULT NULL,
+  `lat` varchar(100) DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `feature_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
---  Table structure for `language`
--- ----------------------------
-DROP TABLE IF EXISTS `language`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `language`
+--
+
 CREATE TABLE `language` (
-  `language_id` int(11) NOT NULL AUTO_INCREMENT,
-  `language_code` varchar(3) DEFAULT NULL,
-  `language_name` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`language_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL,
+  `code` varchar(3) DEFAULT NULL,
+  `name` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
---  Table structure for `restaurant`
--- ----------------------------
-DROP TABLE IF EXISTS `restaurant`;
+--
+-- Dumping data for table `language`
+--
+
+INSERT INTO `language` (`id`, `code`, `name`) VALUES
+(1, 'ar', 'arabic'),
+(2, 'en', 'english'),
+(3, 'ge', 'germany');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `restaurant`
+--
+
 CREATE TABLE `restaurant` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `restaurant_name` varchar(100) DEFAULT NULL,
-  `restaurant_description` varchar(1000) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   `language_id` int(11) DEFAULT NULL,
   `feature_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `lan` varchar(100) DEFAULT NULL,
+  `lat` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
---  Table structure for `seeder`
--- ----------------------------
-DROP TABLE IF EXISTS `seeder`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `seeder`
+--
+
 CREATE TABLE `seeder` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `seeder_name` varchar(100) DEFAULT NULL,
-  `seeder_description` varchar(1000) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   `language_id` int(11) DEFAULT NULL,
   `feature_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `lan` varchar(100) DEFAULT NULL,
+  `lat` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
---  Table structure for `ship`
--- ----------------------------
-DROP TABLE IF EXISTS `ship`;
-CREATE TABLE `ship` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ship_name` varchar(100) DEFAULT NULL,
-  `ship_description` varchar(1000) DEFAULT NULL,
-  `image` varchar(500) DEFAULT NULL,
-  `city_id` int(11) DEFAULT NULL,
-  `language_id` int(11) DEFAULT NULL,
-  `feature_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- --------------------------------------------------------
 
--- ----------------------------
---  Table structure for `tourism_locations`
--- ----------------------------
-DROP TABLE IF EXISTS `tourism_locations`;
+--
+-- Table structure for table `tourism_locations`
+--
+
 CREATE TABLE `tourism_locations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `location_name` varchar(100) DEFAULT NULL,
-  `location_description` varchar(1000) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   `language_id` int(11) DEFAULT NULL,
-  `feature_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `lan` varchar(100) DEFAULT NULL,
+  `lat` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
---  Records 
--- ----------------------------
-INSERT INTO `category` VALUES ('1','hotel','hotel reservation ',NULL,'2'), ('2','airline','flight reservtion',NULL,'2'), ('3','restaurant','restaurant reservation',NULL,'2'), ('4','seeder',NULL,NULL,'2'), ('5','car rental',NULL,NULL,'2'), ('6','ship rental ',NULL,NULL,'2'), ('7','tourism programs',NULL,NULL,'2'), ('8','',NULL,NULL,NULL);
-INSERT INTO `city` VALUES ('1','cairo','cai','1','2'), ('2','spain','sp','2','2');
-INSERT INTO `country` VALUES ('1','egypt',NULL,NULL,NULL,'2'), ('2','spain',NULL,NULL,NULL,'2');
-INSERT INTO `language` VALUES ('1','ar','arabic'), ('2','en','english'), ('3','ge','germany');
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `privilege` enum('SuperAdmin','Admin','Client') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `car`
+--
+ALTER TABLE `car`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `country`
+--
+ALTER TABLE `country`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `feature`
+--
+ALTER TABLE `feature`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `car`
+--
+ALTER TABLE `car`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `country`
+--
+ALTER TABLE `country`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `feature`
+--
+ALTER TABLE `feature`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

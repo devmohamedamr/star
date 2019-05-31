@@ -37,9 +37,9 @@
     <!-- Logo -->
     <a href="../../index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>A</b>star</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Admin</b>starshine</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -55,14 +55,14 @@
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">develop team</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                   Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -98,7 +98,7 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>develop team</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -111,24 +111,81 @@
 
         <li>
           <a href="{{URL('category')}}">
-            <i class="fa fa-th"></i> <span>category</span>
+            <i class="fa fa-th"></i> <span>categories</span>
             <span class="pull-right-container">
             </span>
           </a>
+        </li>
+        <li>
+          <a href="{{URL('feature')}}">
+            <i class="fa fa-th"></i> <span>Features</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="{{URL('country')}}">
+            <i class="fa fa-th"></i> <span>Countries</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="{{URL('city')}}">
+            <i class="fa fa-th"></i> <span>Cities</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="{{URL('location')}}">
+            <i class="fa fa-th"></i> <span>Tourism Locations</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <li>
           <a href="{{URL('hotels')}}">
             <i class="fa fa-th"></i> <span>Hotels</span>
             <span class="pull-right-container">
             </span>
           </a>
         </li>
-          <li>
-              <a href="{{URL('Admin/partner')}}">
-                  <i class="fa fa-th"></i> <span>partner</span>
+        <li>
+          <a href="{{URL('car')}}">
+            <i class="fa fa-th"></i> <span>Cars</span>
             <span class="pull-right-container">
             </span>
-              </a>
-          </li>
-
+          </a>
+        </li>
+        <li>
+          <a href="{{URL('cruise')}}">
+            <i class="fa fa-th"></i> <span>Cruises</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <!-- <li>
+          <a href="{{URL('flight')}}">
+            <i class="fa fa-th"></i> <span>flight</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li> -->
+        <li>
+          <a href="{{URL('restaurant')}}">
+            <i class="fa fa-th"></i> <span>Restaurants</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="{{URL('seeder')}}">
+            <i class="fa fa-th"></i> <span>Seeder</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
 
       </ul>
     </section>
@@ -382,6 +439,7 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq-lJ9rJ8NIkNWdL3vm2NqiMNOS5Jkh0U&libraries=places&callback=initAutocomplete" async defer></script>
 
 <!-- jQuery 3 -->
 <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>

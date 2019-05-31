@@ -62,7 +62,7 @@ class categoryController extends Controller
         $category = new category();
         $category->title = $title;
         $category->description = $description;
-        $category->img = $input['imagename'];
+        $category->image = $input['imagename'];
         $category->save();
         \Session::flash('add','add success');
         return redirect('category/create');

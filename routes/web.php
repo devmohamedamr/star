@@ -16,14 +16,26 @@ Route::get('/', function () {
 });
 //category
 Route::resource('category', 'categoryController');
-Route::get('delete/{id}','categoryController@destroy');
-
+Route::get('category/delete/{id}','categoryController@destroy');
 
 //country 
 Route::resource('country', 'countryController');
+Route::get('country/delete/{id}','countryController@destroy');
+
+//car 
+Route::resource('car', 'carController');
+Route::get('car/delete/{id}','carController@destroy');
+
+
+//cruise 
+Route::resource('cruise', 'cruiseController');
+Route::get('cruise/delete/{id}','cruiseController@destroy');
+
+
 
 //feature 
 Route::resource('feature', 'featureController');
+Route::get('delete/{id}','featureController@destroy');
 
 //hotels
 Route::resource('hotels', 'hotelController');

@@ -31,7 +31,7 @@
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a href="{{url('category/'.$cat->id.'/edit')}}">update</a></li>
-                    <li><a href="{{ url('delete/'.$cat->id )}}">delete</a></li>
+                    <li><a href="{{ url('category/delete/'.$cat->id )}}">delete</a></li>
                 </ul>
                 </div>
             </th>
