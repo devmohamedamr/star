@@ -26,18 +26,24 @@ Route::resource('country', 'countryController');
 Route::resource('feature', 'featureController');
 
 //hotels
-Route::resource('hotels', 'hotelsController');
+Route::resource('hotels', 'hotelController');
+
+Route::post('/getCity','ajaxController@getCity');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/', function(){
-//    $config = array();
-//    $config['center'] = 'New York, USA';
-//    GMaps::initialize($config);
-//    $map = GMaps::create_map();
-//
-//    echo $map['js'];
-//    echo $map['html'];
-//});
+Route::get('/', function(){
+    $config = array();
+
+    $config['zoom'] = '3';
+    $config['map_height'] = '500px';
+
+    GMaps::initialize($config);
+    $map = GMaps::create_map();
+
+    echo $map['js'];
+    echo $map['html'];
+});

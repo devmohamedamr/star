@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\hotles;
+use Illuminate\Support\Facades\DB;
 
-class hotelsController extends Controller
+use FarhanWazir\GoogleMaps\GMaps;
+
+class hotelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +17,16 @@ class hotelsController extends Controller
      */
     public function index()
     {
-        $hotelsObject = new hotles();
+        $data = array(
+            "page_title" => "Hotels",
+            "active_tab" => 'hotels',
+        );
 
+        $hotels =  DB::table('hotel')->get();
 
+        $ViewArray = ['hotels'=>$hotels,'data'=>$data];
 
-        return view('back.hotels.index');
+        return view('back.hotels.index',$ViewArray);
     }
 
     /**
@@ -29,7 +36,34 @@ class hotelsController extends Controller
      */
     public function create()
     {
-        return view('back.hotels.create');
+        $facilities =  DB::table('feature')->get();
+
+        $config = array();
+        $config['zoom'] = '9';
+        $config['geoCodeCaching'] = true;
+
+        $config['map_height'] = "30%";
+
+        $config['center'] = "30.044281,31.340002";
+
+
+        $marker['position'] = "30.044281,31.340002";
+        $marker['infowindow_content'] = "egypt";
+
+
+        $Gmaps = new GMaps();
+
+        $Gmaps->initialize($config);
+        $Gmaps->add_marker($marker);
+
+
+        $map = $Gmaps->create_map();
+
+        $Countries =  DB::table('country')->get();
+
+        $ViewArray = ['countries'=>$Countries,'facilities'=>$facilities,'map'=>$map];
+
+        return view('back.hotels.create',$ViewArray);
     }
 
     /**
