@@ -115,6 +115,11 @@
             <span class="pull-right-container">
             </span>
           </a>
+          <a href="{{URL('hotels')}}">
+            <i class="fa fa-th"></i> <span>Hotels</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
         </li>
           <li>
               <a href="{{URL('Admin/partner')}}">
@@ -168,7 +173,7 @@
           </div>
           <!-- /.box-footer-->
         </div>
-        <!-- /.box -->
+            <!-- /.box -->
 
       </section>
   </div>

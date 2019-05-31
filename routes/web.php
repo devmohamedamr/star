@@ -25,6 +25,9 @@ Route::resource('country', 'countryController');
 //feature 
 Route::resource('feature', 'featureController');
 
+//hotels
+Route::resource('hotels', 'hotelsController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
