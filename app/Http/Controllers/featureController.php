@@ -18,8 +18,8 @@ class featureController extends Controller
      */
     public function index()
     {
-        //
-        return view('back.feature.index');
+        $features = DB::table('feature')->where("language_code","english")->get();
+        return view('back.feature.index',['features' => $features]);
     }
 
     /**
@@ -43,7 +43,7 @@ class featureController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+         //dd($request);
         foreach($request['featurename'] as $k => $v){
             $data[$k]['name'] = $request->input("featurename.$k");
         }
@@ -57,13 +57,16 @@ class featureController extends Controller
         $category_id = $request->input('featurecategory');
         
         $feature = new feature();
-  
+        $maxfid = DB::table('feature')->max("f_id");
+        //dd($maxfid);
         foreach($data as $d){
             $all[] =  array(
                 'feature_name' => $d['name'],
                 'description' => $d['desc'],
-                'language_id' => $d['lang'],
-                'category_id' => $category_id
+                'language_code' => $d['lang'],
+                'category_id' => $category_id,
+                'f_id' => $maxfid++
+
             );
         } 
             DB::table('feature')->insert($all);
@@ -93,7 +96,10 @@ class featureController extends Controller
      */
     public function edit($id)
     {
-        //
+        $feature = feature::find($id);
+
+        return view('back.feature.edit',['feature'=>$feature]);
+
     }
 
     /**
@@ -105,7 +111,17 @@ class featureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    //     $this->validate($request,[
+    //         'title' => 'required',
+    //         'description' => 'required',           
+    //     ]);
+    //   $category =  category::find($id);
+    //   $category->title = $request->input('title');
+    //   $category->description = $request->input('description');
+
+    //   $category->save();
+    //   \Session::flash('update','updated success');
+    //   return redirect('category');
     }
 
     /**
@@ -116,6 +132,8 @@ class featureController extends Controller
      */
     public function destroy($id)
     {
-        //
+        feature::destroy($id);
+        return redirect('/feature');
+
     }
 }

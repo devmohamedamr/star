@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\country;
-use Illuminate\Support\Facades\DB;
 
-
-class countryController extends Controller
+class cruiseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +14,6 @@ class countryController extends Controller
     public function index()
     {
         //
-        $countries = DB::table('country')->get();
-        //      dd($countries);
-        return view('Back.country.index',['countries'=>$countries]);
     }
 
     /**
@@ -29,9 +23,7 @@ class countryController extends Controller
      */
     public function create()
     {
-        
-        $language =  DB::table('language')->get();
-        return view('back.country.create',['language'=>$language]);
+        //
     }
 
     /**
@@ -43,35 +35,6 @@ class countryController extends Controller
     public function store(Request $request)
     {
         //
-
-        foreach($request['title'] as $k => $v){
-            $data[$k]['name'] = $request->input("title.$k");
-        }
-        foreach($request['description'] as $k => $v){
-            $data[$k]['desc'] = $request->input("description.$k");
-        }
-        foreach($request['title'] as $k => $v){
-            $data[$k]['lang'] = $k;
-        }
-
-        $image =  $request->file('files');
-        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('img');
-        $new =  $image->move($destinationPath, $input['imagename']);
-
-
-        foreach($data as $d){
-            $all[] =  array(
-                'title' => $d['name'],
-                'description' => $d['desc'],
-                'language_code' => $d['lang'],
-                'image' =>  $input['imagename']
-            );
-        } 
-            DB::table('country')->insert($all);
-
-            \Session::flash('add','add success');
-            return redirect('country');
     }
 
     /**
@@ -116,7 +79,6 @@ class countryController extends Controller
      */
     public function destroy($id)
     {
-        country::destroy($id);
-        return redirect('/country');
+        //
     }
 }
