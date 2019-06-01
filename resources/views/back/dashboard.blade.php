@@ -55,14 +55,14 @@
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs">develop team</span>
+            <span class="hidden-xs">{{Auth::user()->name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
 
                 <p>
-                   Web Developer
+                   {{Auth::user()->name}}
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -72,7 +72,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                <a href="{{url('/logout')}}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -98,7 +98,7 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>develop team</p>
+          <p>{{Auth::user()->name}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -107,8 +107,15 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
 
-
-
+        @if(Auth::user()->privilege == 'SuperAdmin')
+        <li>
+          <a href="{{URL('user')}}">
+            <i class="fa fa-th"></i> <span>Users</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        @endif
         <li>
           <a href="{{URL('category')}}">
             <i class="fa fa-th"></i> <span>categories</span>

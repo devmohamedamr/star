@@ -20,6 +20,7 @@ Route::get('category/delete/{id}','categoryController@destroy');
 
 
 //user
+
 Route::resource('user', 'userController');
 Route::get('user/delete/{id}','userController@destroy');
 
