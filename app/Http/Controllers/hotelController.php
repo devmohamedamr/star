@@ -12,6 +12,8 @@ use App\hotel;
 
 use App\hotels_images;
 
+use App\hotel_facilities;
+
 class hotelController extends Controller
 {
     /**
@@ -90,8 +92,6 @@ class hotelController extends Controller
         $hotels->save();
 
 
-
-
         foreach (request('hotelImages') as $image)
         {
             $hotelsImages = new hotels_images();
@@ -105,6 +105,17 @@ class hotelController extends Controller
             $hotelsImages->save();
 
         }
+
+        foreach (request('facilities') as $facility)
+        {
+            $hotelFacilities = new hotel_facilities();
+
+            $hotelFacilities->hotel_id = $hotels->id;
+            $hotelFacilities->facility_id = $facility;
+
+            $hotelFacilities->save();
+        }
+
 
         dd(request()->all());
     }
