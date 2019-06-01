@@ -48,7 +48,7 @@ class categoryController extends Controller
     {
          $this->validate($request,[
             'title' => 'required',
-            'description' => 'required',           
+            'description' => 'required',
             'files' => 'required',
         ]);
 

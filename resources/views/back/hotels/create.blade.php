@@ -1,6 +1,6 @@
 @extends('back.dashboard')
 @section('content')
-    <form role="form" action="{!! route('hotels.store') !!}}" enctype="multipart/form-data">
+    <form role="form" method="post" action="{{ route('hotels.store') }}" enctype="multipart/form-data">
 
         @csrf
 
@@ -16,17 +16,17 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Hotel Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1">
+                        <input type="text"  name = 'hotelName' class="form-control" id="exampleInputEmail1">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Hotel Description</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                        <textarea class="form-control" name = 'hotelDescription' rows="3" placeholder="Enter ..."></textarea>
                     </div>
 
 
                     <div class="form-group">
                         <label for="exampleInputFile">Hotel Images</label>
-                        <input type="file" id="exampleInputFile" multiple>
+                        <input  name = 'hotelImages[]' type="file" id="exampleInputFile" multiple>
                     </div>
 
                     <div class="form-group">
@@ -41,7 +41,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputFile">City</label>
-                        <select name="country" class="form-control" id="city">
+                        <select name="city" class="form-control" id="city">
                             <option value="">select</option>
                         </select>
                     </div>
@@ -71,7 +71,7 @@
                             <div class="form-group">
                                 <label class="">
                                     <div class="icheckbox_minimal-red checked" aria-checked="false" aria-disabled="false">
-                                        <input type="checkbox" class="minimal-red" value="{{$facility->id}}" >
+                                        <input name="facilities[]" type="checkbox" class="minimal-red" value="{{$facility->id}}" >
                                     </div>
                                     {{$facility->feature_name}}
                                 </label>

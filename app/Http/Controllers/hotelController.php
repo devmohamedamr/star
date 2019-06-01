@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 use FarhanWazir\GoogleMaps\GMaps;
 
+use App\hotel;
+
+use App\hotels_images;
+
 class hotelController extends Controller
 {
     /**
@@ -22,7 +26,7 @@ class hotelController extends Controller
             "active_tab" => 'hotels',
         );
 
-        $hotels =  DB::table('hotel')->get();
+        $hotels =  DB::table('hotels')->get();
 
         $ViewArray = ['hotels'=>$hotels,'data'=>$data];
 
@@ -47,14 +51,9 @@ class hotelController extends Controller
         $config['center'] = "30.044281,31.340002";
 
 
-        $marker['position'] = "30.044281,31.340002";
-        $marker['infowindow_content'] = "egypt";
-
-
         $Gmaps = new GMaps();
 
         $Gmaps->initialize($config);
-        $Gmaps->add_marker($marker);
 
 
         $map = $Gmaps->create_map();
@@ -74,7 +73,40 @@ class hotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'hotelName' => 'required',
+            'hotelDescription' => 'required',
+            'country' => 'required',
+            'city' => 'required',
+            'facilities' => 'required',
+            'hotelImages' => 'required'
+        ]);
+
+        $hotels = new hotel();
+
+        $hotels->hotel_name = request('hotelName');
+        $hotels->hotel_description = request('hotelDescription');
+        $hotels->city_id = request('city');
+        $hotels->save();
+
+
+
+
+        foreach (request('hotelImages') as $image)
+        {
+            $hotelsImages = new hotels_images();
+            $input['imagename'] = md5(date('U').rand(1000,100000)).'.'.$image->getClientOriginalExtension();
+
+            $destinationPath = public_path('img/hotels');
+            $image->move($destinationPath, $input['imagename']);
+
+            $hotelsImages->hotel_id = $hotels->id;
+            $hotelsImages->image_path = $input['imagename'];
+            $hotelsImages->save();
+
+        }
+
+        dd(request()->all());
     }
 
     /**
