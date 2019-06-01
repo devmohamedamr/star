@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 use App\category;
 
@@ -21,7 +20,7 @@ class categoryController extends Controller
             "active_tab" => 'category',
         );
 
-        $category = DB::table('categories')->get();
+        $category = category::all();
         return view('back.category.index',['category' => $category]);
 
     }

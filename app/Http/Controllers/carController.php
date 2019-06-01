@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\car;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class carController extends Controller
 {
@@ -14,7 +13,7 @@ class carController extends Controller
      */
     public function index()
     {
-        $cars = DB::table('car')->get();
+        $cars = car::all();
         return view('back.car.index',['cars' => $cars]);
 
     }

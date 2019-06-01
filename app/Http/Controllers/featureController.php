@@ -29,8 +29,8 @@ class featureController extends Controller
      */
     public function create()
     {
-        $language =  DB::table('language')->get();
-        $category =  DB::table('categories')->get();
+        $language =  language::all();
+        $category =  category::all();
 
         return view('back.feature.create',['language'=>$language,'category'=>$category]);
     }
@@ -73,7 +73,6 @@ class featureController extends Controller
 
             \Session::flash('add','add success');
             return redirect('feature');
-
         
     }
 
