@@ -59,3 +59,9 @@ Route::get('/', function(){
     echo $map['js'];
     echo $map['html'];
 });
+
+
+Route::get('/logout', function(){
+   Auth::logout();
+   return Redirect::to('login');
+});

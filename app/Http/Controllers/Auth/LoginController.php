@@ -39,9 +39,9 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        $account_privilege = Auth::user()->account_privilege;
-        if ($account_privilege == 7) {
-            return '/classes';
+        $account_privilege = Auth::user()->privilege;
+        if ($account_privilege == 'SuperAdmin') {
+            return '/category';
         } else {
             return '/';
         }
