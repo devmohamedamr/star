@@ -18,6 +18,12 @@ Route::get('/', function () {
 Route::resource('category', 'categoryController');
 Route::get('category/delete/{id}','categoryController@destroy');
 
+
+//user
+Route::resource('user', 'userController');
+Route::get('user/delete/{id}','userController@destroy');
+
+
 //country 
 Route::resource('country', 'countryController');
 Route::get('country/delete/{id}','countryController@destroy');
