@@ -116,8 +116,10 @@ class hotelController extends Controller
             $hotelFacilities->save();
         }
 
+        session()->flash('add','add success');
 
-        dd(request()->all());
+        return redirect('hotels/create');
+
     }
 
     /**
