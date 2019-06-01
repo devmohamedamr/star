@@ -19,7 +19,7 @@ $(function(){
 
                 $.each(response.cities,function(key,value)
                 {
-                    city.html('<option value=' + value.city_name + '>' + value.city_name + '</option>');
+                    city.html('<option value=' + value.id + '>' + value.city_name + '</option>');
                 });
             }
         });
