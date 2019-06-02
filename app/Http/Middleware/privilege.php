@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class privilege
 {
@@ -15,7 +16,7 @@ class privilege
      */
     public function handle($request, Closure $next)
     {
-        if($request->privilege == 'SuperAdmin'){
+        if(Auth::user()->privilege == 'SuperAdmin'){
             return $next($request);
         }
         
