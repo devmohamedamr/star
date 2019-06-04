@@ -25,6 +25,12 @@ Route::resource('user', 'userController');
 Route::get('user/delete/{id}','userController@destroy');
 
 
+//city
+
+Route::resource('city', 'cityController');
+Route::get('city/delete/{id}','cityController@destroy');
+
+
 //country 
 Route::resource('country', 'countryController');
 Route::get('country/delete/{id}','countryController@destroy');

@@ -15,11 +15,9 @@ class Country extends Migration
     {
         Schema::create('country',function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->integer('country_id');
-            $table->string('language_id');
-            $table->string('lan');
-            $table->string('lat');
-            $table->timestamps();
+            $table->string('code');
+            $table->string('name');
+            // $table->timestamps();
         });
     }
 

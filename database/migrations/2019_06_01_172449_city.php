@@ -16,7 +16,6 @@ class City extends Migration
         Schema::create('city',function(Blueprint $table){
             $table->bigIncrements('id');
             $table->integer('country_id');
-            $table->string('language_id');
             $table->string('lan');
             $table->string('lat');
             $table->timestamps();

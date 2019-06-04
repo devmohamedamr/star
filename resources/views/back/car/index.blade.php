@@ -32,11 +32,7 @@
   <body>
       <input type="hidden" id="long" value="">
       <input type="hidden" id="lat" value="">
-    <div id="floating-panel">
-      <input onclick="clearMarkers();" type=button value="Hide Markers">
-      <input onclick="showMarkers();" type=button value="Show All Markers">
-      <input onclick="deleteMarkers();" type=button value="Delete Markers">
-    </div>
+
     <div id="map"></div>
     <p>Click on the map to add markers.</p>
     <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
@@ -53,10 +49,12 @@
         var haightAshbury = {lat: 37.769, lng: -122.446};
 
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
+          zoom: 3,
           center: haightAshbury,
           mapTypeId: 'terrain'
         });
+
+
 
         // This event listener will call addMarker() when the map is clicked.
         map.addListener('click', function(event) {
