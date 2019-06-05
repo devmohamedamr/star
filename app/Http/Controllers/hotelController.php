@@ -141,7 +141,37 @@ class hotelController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $hotelID = $id;
+
+        $facilities =  DB::table('feature')->get();
+
+        $config = array();
+        $config['zoom'] = '9';
+        $config['geoCodeCaching'] = true;
+
+        $config['map_height'] = "30%";
+
+        $config['center'] = "30.044281,31.340002";
+
+
+        $Gmaps = new GMaps();
+
+        $Gmaps->initialize($config);
+
+
+        $map = $Gmaps->create_map();
+
+        $Countries =  DB::table('country')->get();
+
+        $ViewArray = [
+            'countries'=>$Countries,
+            'facilities'=>$facilities,
+            'map'=>$map,
+            'hotelID'=>$hotelID
+        ];
+
+        return view('back.hotels.edit',$ViewArray);
     }
 
     /**
@@ -153,7 +183,7 @@ class hotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($id);
     }
 
     /**

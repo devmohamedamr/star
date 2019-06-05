@@ -37,9 +37,10 @@ Route::get('cruise/delete/{id}','cruiseController@destroy');
 Route::resource('feature', 'featureController');
 Route::get('delete/{id}','featureController@destroy');
 
-//hotels
+//hotels controller
 Route::resource('hotels', 'hotelController');
 
+//ajax controller
 Route::post('/getCity','ajaxController@getCity');
 
 
@@ -47,15 +48,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', function(){
-    $config = array();
-
-    $config['zoom'] = '3';
-    $config['map_height'] = '500px';
-
-    GMaps::initialize($config);
-    $map = GMaps::create_map();
-
-    echo $map['js'];
-    echo $map['html'];
-});
+//Route::get('/', function(){
+//    $config = array();
+//
+//    $config['zoom'] = '3';
+//    $config['map_height'] = '500px';
+//
+//    GMaps::initialize($config);
+//    $map = GMaps::create_map();
+//
+//    echo $map['js'];
+//    echo $map['html'];
+//});

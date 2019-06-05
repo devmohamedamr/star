@@ -4,6 +4,14 @@
 
         @csrf
 
+        @if(session()->has('add'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> </h4>
+                {{session()->get('add')}}
+            </div>
+        @endif
+
     <div class="col-md-6">
         <!-- general form elements -->
         <div class="box box-primary">
@@ -94,12 +102,6 @@
             <!-- /.box -->
         </div>
     </form>
-    @if(Session::has('add'))
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i> </h4>
-            {{Session::get('add')}}
-        </div>
-    @endif
+
 
 @endsection
