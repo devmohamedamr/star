@@ -43,7 +43,7 @@
                         <select name="country" class="form-control" id="country">
                             <option value="">select</option>
                             @foreach($countries as $country)
-                                <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                <option value="{{$country->id}}">{{$country->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -67,8 +67,9 @@
                 <div class="box-body">
                     <div class="col-md-12" >
                         <div class="form-group">
-                            {!! $map['js'] !!}
-                            {!! $map['html'] !!}
+                            <input type="hidden" name="long" id="long" value="">
+                            <input type="hidden" name="lat" id="lat" value="">
+                            <div id="map" style="height: 50%"></div>
                         </div>
                     </div>
 

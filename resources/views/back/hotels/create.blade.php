@@ -12,6 +12,12 @@
             </div>
         @endif
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+            <ul>{!! implode('', $errors->all('<li>:message</li>')) !!}</ul>
+            </div>
+        @endif
+
     <div class="col-md-6">
         <!-- general form elements -->
         <div class="box box-primary">
@@ -56,46 +62,47 @@
 
 
                 </div>
-                <!-- /.box-body -->
+            <!-- /.box-body -->
         </div>
         <!-- /.box -->
         <!-- /.box -->
     </div>    <div class="col-md-6">
-        <!-- general form elements -->
-        <div class="box box-primary">
-            <div class="box-body">
-                <div class="col-md-12" >
-                    <div class="form-group">
-                    {!! $map['js'] !!}
-                    {!! $map['html'] !!}
-                    </div>
-                </div>
-
-
-                <div class="col-md-12" >
-
-                    @foreach($facilities as $facility)
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="">
-                                    <div class="icheckbox_minimal-red checked" aria-checked="false" aria-disabled="false">
-                                        <input name="facilities[]" type="checkbox" class="minimal-red" value="{{$facility->id}}" >
-                                    </div>
-                                    {{$facility->feature_name}}
-                                </label>
-                            </div>
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div class="col-md-12" >
+                        <div class="form-group">
+                            <input type="hidden" name="long" id="long" value="">
+                            <input type="hidden" name="lat" id="lat" value="">
+                            <div id="map" style="height: 50%"></div>
                         </div>
-                    @endforeach
+                    </div>
+
+
+                    <div class="col-md-12" >
+
+                        @foreach($facilities as $facility)
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="">
+                                        <div class="icheckbox_minimal-red checked" aria-checked="false" aria-disabled="false">
+                                            <input name="facilities[]" type="checkbox" class="minimal-red" value="{{$facility->id}}" >
+                                        </div>
+                                        {{$facility->feature_name}}
+                                    </label>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
 
             </div>
-            <!-- /.box-body -->
-
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-
-        </div>
             <!-- /.box -->
 
 

@@ -59,16 +59,3 @@ Route::post('/getCity','ajaxController@getCity');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/', function(){
-    $config = array();
-
-    $config['zoom'] = '3';
-    $config['map_height'] = '500px';
-
-    GMaps::initialize($config);
-    $map = GMaps::create_map();
-
-    echo $map['js'];
-    echo $map['html'];
-});

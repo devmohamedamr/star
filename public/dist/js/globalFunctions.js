@@ -15,12 +15,21 @@ $(function(){
             type:'POST',
             url:'/getCity',
             data:{_token:csrf,countryID:countryID},
+
             success:function(response) {
 
-                $.each(response.cities,function(key,value)
+                var cityOptionsData = '',
+                cities = response.cities;
+
+                for (var counter = 0;cities.length>counter;counter++)
                 {
-                    city.html('<option value=' + value.id + '>' + value.city_name + '</option>');
-                });
+                    var cityData =  cities[counter];
+
+                    cityOptionsData+='<option value= '+ cityData.id +' > '+cityData.city_name+' </option>';
+                }
+
+                city.html(cityOptionsData);
+
             }
         });
 

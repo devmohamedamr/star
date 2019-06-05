@@ -27,6 +27,7 @@ class hotelController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         $data = array(
@@ -49,26 +50,8 @@ class hotelController extends Controller
     public function create()
     {
         $facilities =  DB::table('feature')->get();
-
-        $config = array();
-        $config['zoom'] = '9';
-        $config['geoCodeCaching'] = true;
-
-        $config['map_height'] = "30%";
-
-        $config['center'] = "30.044281,31.340002";
-
-
-        $Gmaps = new GMaps();
-
-        $Gmaps->initialize($config);
-
-
-        $map = $Gmaps->create_map();
-
         $Countries =  DB::table('country')->get();
-dd($Countries);
-        $ViewArray = ['countries'=>$Countries,'facilities'=>$facilities,'map'=>$map];
+        $ViewArray = ['countries'=>$Countries,'facilities'=>$facilities];
 
         return view('back.hotels.create',$ViewArray);
     }
@@ -90,11 +73,15 @@ dd($Countries);
             'hotelImages' => 'required'
         ]);
 
+
         $hotels = new hotel();
 
         $hotels->hotel_name = request('hotelName');
         $hotels->hotel_description = request('hotelDescription');
         $hotels->city_id = request('city');
+        $hotels->long = request('long');
+        $hotels->lat = request('lat');
+        $hotels->language_id = '1';
         $hotels->save();
 
 
@@ -152,28 +139,12 @@ dd($Countries);
 
         $facilities =  DB::table('feature')->get();
 
-        $config = array();
-        $config['zoom'] = '9';
-        $config['geoCodeCaching'] = true;
-
-        $config['map_height'] = "30%";
-
-        $config['center'] = "30.044281,31.340002";
-
-
-        $Gmaps = new GMaps();
-
-        $Gmaps->initialize($config);
-
-
-        $map = $Gmaps->create_map();
 
         $Countries =  DB::table('country')->get();
 
         $ViewArray = [
             'countries'=>$Countries,
             'facilities'=>$facilities,
-            'map'=>$map,
             'hotelID'=>$hotelID
         ];
 
