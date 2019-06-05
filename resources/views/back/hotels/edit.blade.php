@@ -1,6 +1,6 @@
 @extends('back.dashboard')
 @section('content')
-    <form role="form" method="post" action="{{ route('hotels.update',$hotelID) }}" enctype="multipart/form-data">
+    <form role="form" method="post" action="{{ route('hotels.update',$hotelInfo->id) }}" enctype="multipart/form-data">
 
         <input type="hidden" name="_method" value="PUT">
         @csrf
@@ -17,7 +17,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Add Hotel</h3>
+                    <h3 class="box-title">Update Hotel</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -25,11 +25,11 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Hotel Name</label>
-                        <input type="text"  name = 'hotelName' class="form-control" id="exampleInputEmail1">
+                        <input type="text"  name = 'hotelName' class="form-control"  value="{{$hotelInfo->hotel_name}}" id="exampleInputEmail1">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Hotel Description</label>
-                        <textarea class="form-control" name = 'hotelDescription' rows="3" placeholder="Enter ..."></textarea>
+                        <textarea class="form-control" name = 'hotelDescription' rows="3" placeholder="Enter ...">{{$hotelInfo->hotel_description}}</textarea>
                     </div>
 
 

@@ -135,7 +135,8 @@ class hotelController extends Controller
     public function edit($id)
     {
 
-        $hotelID = $id;
+        $HotelInfo = hotel::where('id',$id)->first();
+//        dd($HotelInfo);
 
         $facilities =  DB::table('feature')->get();
 
@@ -145,7 +146,7 @@ class hotelController extends Controller
         $ViewArray = [
             'countries'=>$Countries,
             'facilities'=>$facilities,
-            'hotelID'=>$hotelID
+            'hotelInfo'=>$HotelInfo
         ];
 
         return view('back.hotels.edit',$ViewArray);
