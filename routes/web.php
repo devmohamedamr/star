@@ -18,7 +18,20 @@ Route::get('/', function () {
 Route::resource('category', 'categoryController');
 Route::get('category/delete/{id}','categoryController@destroy');
 
-//country 
+
+//user
+
+Route::resource('user', 'userController');
+Route::get('user/delete/{id}','userController@destroy');
+
+
+//city
+
+Route::resource('city', 'cityController');
+Route::get('city/delete/{id}','cityController@destroy');
+
+
+//country
 Route::resource('country', 'countryController');
 Route::get('country/delete/{id}','countryController@destroy');
 
@@ -37,10 +50,9 @@ Route::get('cruise/delete/{id}','cruiseController@destroy');
 Route::resource('feature', 'featureController');
 Route::get('delete/{id}','featureController@destroy');
 
-//hotels controller
+//hotels
 Route::resource('hotels', 'hotelController');
 
-//ajax controller
 Route::post('/getCity','ajaxController@getCity');
 
 
@@ -48,15 +60,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/', function(){
-//    $config = array();
-//
-//    $config['zoom'] = '3';
-//    $config['map_height'] = '500px';
-//
-//    GMaps::initialize($config);
-//    $map = GMaps::create_map();
-//
-//    echo $map['js'];
-//    echo $map['html'];
-//});
+Route::get('/', function(){
+    $config = array();
+
+    $config['zoom'] = '3';
+    $config['map_height'] = '500px';
+
+    GMaps::initialize($config);
+    $map = GMaps::create_map();
+
+    echo $map['js'];
+    echo $map['html'];
+});

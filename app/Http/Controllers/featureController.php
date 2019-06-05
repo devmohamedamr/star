@@ -16,6 +16,11 @@ class featureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $features = DB::table('feature')->where("language_code","english")->get();
@@ -29,8 +34,8 @@ class featureController extends Controller
      */
     public function create()
     {
-        $language =  DB::table('language')->get();
-        $category =  DB::table('categories')->get();
+        $language =  language::all();
+        $category =  category::all();
 
         return view('back.feature.create',['language'=>$language,'category'=>$category]);
     }
@@ -73,7 +78,6 @@ class featureController extends Controller
 
             \Session::flash('add','add success');
             return redirect('feature');
-
         
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\language;
 use Illuminate\Http\Request;
 use App\country;
 use Illuminate\Support\Facades\DB;
@@ -14,10 +15,15 @@ class countryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         //
-        $countries = DB::table('country')->get();
+        $countries = country::all();
         //      dd($countries);
         return view('Back.country.index',['countries'=>$countries]);
     }
@@ -30,7 +36,7 @@ class countryController extends Controller
     public function create()
     {
         
-        $language =  DB::table('language')->get();
+        $language =  language::all();
         return view('back.country.create',['language'=>$language]);
     }
 
