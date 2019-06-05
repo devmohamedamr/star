@@ -67,7 +67,7 @@ class hotelController extends Controller
         $map = $Gmaps->create_map();
 
         $Countries =  DB::table('country')->get();
-
+dd($Countries);
         $ViewArray = ['countries'=>$Countries,'facilities'=>$facilities,'map'=>$map];
 
         return view('back.hotels.create',$ViewArray);
