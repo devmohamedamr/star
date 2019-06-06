@@ -11,8 +11,6 @@ use App\hotel;
 use App\hotels_images;
 
 use App\hotel_facilities;
-use Illuminate\Support\Facades\Storage;
-use phpDocumentor\Reflection\File;
 
 class hotelController extends Controller
 {
@@ -30,14 +28,9 @@ class hotelController extends Controller
 
     public function index()
     {
-        $data = array(
-            "page_title" => "Hotels",
-            "active_tab" => 'hotels',
-        );
+        $Countries =  DB::table('country')->get();
 
-        $hotels =  DB::table('hotels')->get();
-
-        $ViewArray = ['hotels'=>$hotels,'data'=>$data];
+        $ViewArray = ['countries'=>$Countries];
 
         return view('back.hotels.index',$ViewArray);
     }
@@ -241,6 +234,18 @@ class hotelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hotelsImages = hotels_images::all()->where('hotel_id',$id);
+
+        foreach ($hotelsImages as $hotelsImage)
+        {
+            $imagePath = "img/hotels/".$hotelsImage->image_path;
+            @unlink($imagePath);
+        }
+
+        hotels_images::destroy($id);
+        hotel_facilities::destroy($id);
+        hotel::destroy($id);
+
+        return redirect('/hotels');
     }
 }

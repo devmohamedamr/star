@@ -52,8 +52,10 @@ Route::get('delete/{id}','featureController@destroy');
 
 //hotels
 Route::resource('hotels', 'hotelController');
+Route::get('hotels/delete/{id}','hotelController@destroy');
 
 Route::post('/getCity','ajaxController@getCity');
+Route::post('/getHotels','ajaxController@getHotels');
 
 
 Auth::routes();

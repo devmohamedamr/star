@@ -4,10 +4,14 @@ $(function(){
         city = $('#city'),
         csrf = $("input[name=_token]").val(),
         currentCountry = country.find(":selected").val(),
-        currentCityID = $('#currentCityID').val();
+        currentCityID = $('#currentCityID').val(),
+        showHotelsButton = $('#showHotels'),
+        hotelsTable = $('#hotelTable tbody');
+
 
     $('.sidebar-menu').tree();
     $('#table_id').DataTable();
+
     /****************************************************/
 
     function GetCityAjax(countryID,currentCityID = null)
@@ -25,7 +29,7 @@ $(function(){
                 for (var counter = 0;cities.length>counter;counter++)
                 {
                     var cityData =  cities[counter],
-                    selected = '';
+                        selected = '';
 
                     if(currentCityID == cityData.id)
                     {
@@ -45,7 +49,7 @@ $(function(){
     /****************************************************/
     function GetCity() {
         var _this = $(this),
-        countryID = _this.val();
+            countryID = _this.val();
 
         GetCityAjax(countryID);
 
@@ -60,6 +64,56 @@ $(function(){
 
     }
     GetCityOnload();
+
+    /*********************************************************/
+
+    function ShowHotelsTables()
+    {
+        var CityId = city.find(":selected").val();
+
+        $.ajax({
+            type:'POST',
+            url:'/getHotels',
+            data:{_token:csrf,CityId:CityId},
+
+            success:function(response) {
+
+                var  hotels = response.hotels,
+                table = '<tr>';
+                console.log(hotels);
+
+                for (var counter = 0;hotels.length>counter;counter++) {
+                    var hotelDate = hotels[counter];
+                    table+='<td>'+
+                        hotelDate.hotel_name +
+                        '</td>'+
+                        '<td>'+
+                        hotelDate.hotel_description +
+                        '</td>'+
+                        '<td>' +
+                        '<a href=hotels/' +
+                        + hotelDate.id +
+                        '/edit>' +
+                        '<button class="btn btn-info">Edit</button></a>'+
+                        '<a href=hotels/delete/' +
+                        + hotelDate.id +
+                        '>' +
+                        '<button class="btn btn-danger">Delete</button></a>'+
+
+                        '</td>'+
+
+                    '</tr>'
+                }
+
+                hotelsTable.html(table);
+            }
+        });
+
+
+
+    }
+
+    showHotelsButton.on('click',ShowHotelsTables);
 
     /*********************************************************/
 
