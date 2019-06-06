@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 
-use FarhanWazir\GoogleMaps\GMaps;
-
 use App\hotel;
 
 use App\hotels_images;
@@ -136,17 +134,23 @@ class hotelController extends Controller
     {
 
         $HotelInfo = hotel::where('id',$id)->first();
-//        dd($HotelInfo);
+
+        $HotelImages = hotels_images::all()->where('hotel_id',$id);
+
+        $HotelFacilities = hotel_facilities::all()->where('hotel_id',$id);
 
         $facilities =  DB::table('feature')->get();
 
-
         $Countries =  DB::table('country')->get();
+
+
 
         $ViewArray = [
             'countries'=>$Countries,
             'facilities'=>$facilities,
-            'hotelInfo'=>$HotelInfo
+            'hotelInfo'=>$HotelInfo,
+            'hotelImages'=>$HotelImages,
+            'hotelFacilities'=>$HotelFacilities
         ];
 
         return view('back.hotels.edit',$ViewArray);
@@ -161,7 +165,7 @@ class hotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($id);
+        dd($request->all());
     }
 
     /**

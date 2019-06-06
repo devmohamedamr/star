@@ -36,19 +36,33 @@
                     <div class="form-group">
                         <label for="exampleInputFile">Hotel Images</label>
                         <input  name = 'hotelImages[]' type="file" id="exampleInputFile" multiple>
+
+                        <div class="col-md-12">
+                            @foreach($hotelImages as $image)
+                                <div class="col-md-3"><img src="{!! asset("img/hotels/$image->image_path") !!}"></div>
+                            @endforeach
+
+                       </div>
+
                     </div>
 
                     <div class="form-group">
                         <label for="exampleInputFile">Country</label>
                         <select name="country" class="form-control" id="country">
-                            <option value="">select</option>
+
                             @foreach($countries as $country)
-                                <option value="{{$country->id}}">{{$country->name}}</option>
+                                @php($selected = '')
+                                @if($country->id == $hotelInfo->country_id)
+                                    @php($selected = 'selected')
+
+                                @endif
+                                <option value="{{$country->id}}" {{$selected}}>{{$country->name}}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
+                        <input type="hidden" name="currentCityID" id = "currentCityID" value="{{$hotelInfo->city_id}}">
                         <label for="exampleInputFile">City</label>
                         <select name="city" class="form-control" id="city">
                             <option value="">select</option>
@@ -77,16 +91,27 @@
                     <div class="col-md-12" >
 
                         @foreach($facilities as $facility)
+                            @php($checked = '')
+                            @foreach($hotelFacilities as $hotelFacility)
+
+                                @if($hotelFacility->facility_id ==$facility->id)
+                                    @php($checked = 'checked')
+
+                                @endif
+
+                            @endforeach
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="">
                                         <div class="icheckbox_minimal-red checked" aria-checked="false" aria-disabled="false">
-                                            <input name="facilities[]" type="checkbox" class="minimal-red" value="{{$facility->id}}" >
+                                            <input name="facilities[]" type="checkbox" class="minimal-red" value="{{$facility->id}}"  {{ $checked }}>
                                         </div>
                                         {{$facility->feature_name}}
                                     </label>
                                 </div>
                             </div>
+
                         @endforeach
                     </div>
 

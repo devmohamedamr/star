@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="559acf57-d068-4abf-bd05-ad3b14795371" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/star.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/star.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/hotelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/hotelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_05_112905_create_hotels_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_05_112905_create_hotels_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/dist/js/globalFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist/js/globalFunctions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/back/hotels/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/back/hotels/edit.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,8 +26,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/hotelController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="148" column="22" selection-start-line="148" selection-start-column="13" selection-end-line="148" selection-end-column="22" />
+            <state relative-caret-position="2385">
+              <caret line="167" column="25" selection-start-line="167" selection-start-column="25" selection-end-line="167" selection-end-column="25" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
               </folding>
@@ -31,11 +35,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/back/hotels/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="83" selection-start-line="2" selection-start-column="83" selection-end-line="2" selection-end-column="83" />
+            <state relative-caret-position="1245">
+              <caret line="83" column="78" selection-start-line="83" selection-start-column="78" selection-end-line="83" selection-end-column="78" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/dist/js/globalFunctions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -74,6 +87,8 @@
       <find>map</find>
       <find>new</find>
       <find>hotelID</find>
+      <find>fa</find>
+      <find>update</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -94,16 +109,16 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/categoryController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_01_061049_create_hotel_facilities_table.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_06_05_112905_create_hotels_table.php" />
         <option value="$PROJECT_DIR$/resources/views/back/dashboard.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_01_172511_country.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_01_172449_city.php" />
-        <option value="$PROJECT_DIR$/public/dist/js/globalFunctions.js" />
         <option value="$PROJECT_DIR$/resources/views/back/hotels/create.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_05_31_163008_create_hotels_images_table.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_06_05_112905_create_hotels_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/hotelController.php" />
         <option value="$PROJECT_DIR$/resources/views/back/hotels/edit.blade.php" />
+        <option value="$PROJECT_DIR$/public/dist/js/globalFunctions.js" />
       </list>
     </option>
   </component>
@@ -211,7 +226,13 @@
             <path>
               <item name="star" type="b2602c69:ProjectViewProjectNode" />
               <item name="star" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="star" type="b2602c69:ProjectViewProjectNode" />
+              <item name="star" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="star" type="b2602c69:ProjectViewProjectNode" />
@@ -222,7 +243,14 @@
               <item name="star" type="b2602c69:ProjectViewProjectNode" />
               <item name="star" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="star" type="b2602c69:ProjectViewProjectNode" />
+              <item name="star" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -281,16 +309,18 @@
       <workItem from="1559313343353" duration="8260000" />
       <workItem from="1559325463380" duration="2513000" />
       <workItem from="1559369020512" duration="1170000" />
+      <workItem from="1559747483972" duration="5263000" />
+      <workItem from="1559755670236" duration="2591000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41801000" />
+    <option name="totallyTimeSpent" value="49655000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1280" height="773" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28606158" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29578605" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -511,13 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_05_112905_create_hotels_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_01_172511_country.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -536,13 +559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="476" column="21" selection-start-line="476" selection-start-column="8" selection-end-line="476" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/dist/js/globalFunctions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
@@ -574,10 +590,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_05_112905_create_hotels_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="39" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/hotelController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="148" column="22" selection-start-line="148" selection-start-column="13" selection-end-line="148" selection-end-column="22" />
+        <state relative-caret-position="2385">
+          <caret line="167" column="25" selection-start-line="167" selection-start-column="25" selection-end-line="167" selection-end-column="25" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
@@ -586,8 +609,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/back/hotels/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="83" selection-start-line="2" selection-start-column="83" selection-end-line="2" selection-end-column="83" />
+        <state relative-caret-position="1245">
+          <caret line="83" column="78" selection-start-line="83" selection-start-column="78" selection-end-line="83" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/dist/js/globalFunctions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>

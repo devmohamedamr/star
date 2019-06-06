@@ -2,14 +2,18 @@ $(function(){
 
     var country = $('#country'),
         city = $('#city'),
-        csrf = $("input[name=_token]").val();
+        csrf = $("input[name=_token]").val(),
+        currentCountry = country.find(":selected").val();
+
+
 
     $('.sidebar-menu').tree();
     $('#table_id').DataTable();
     /****************************************************/
     function GetCity() {
         var _this = $(this),
-        countryID = _this.val();
+
+        countryID =  _this.val();
 
         $.ajax({
             type:'POST',
@@ -35,9 +39,9 @@ $(function(){
 
     }
 
-    country.on('change',GetCity);
 
-
+    country.on("change load",GetCity);
+/*********************************************************/
 
 
 });
