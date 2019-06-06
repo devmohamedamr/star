@@ -81,8 +81,8 @@
                 <div class="box-body">
                     <div class="col-md-12" >
                         <div class="form-group">
-                            <input type="hidden" name="long" id="long" value="">
-                            <input type="hidden" name="lat" id="lat" value="">
+                            <input type="hidden" name="long" id="long" value="{{$hotelInfo->long}}">
+                            <input type="hidden" name="lat" id="lat" value="{{$hotelInfo->lat}}">
                             <div id="map" style="height: 50%"></div>
                         </div>
                     </div>
