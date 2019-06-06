@@ -39,7 +39,7 @@
 
                         <div class="col-md-12">
                             @foreach($hotelImages as $image)
-                                <div class="col-md-3"><img src="{!! asset("img/hotels/$image->image_path") !!}"></div>
+                                <div class="col-md-3"><img class="img-md img-responsive" src="{!! asset("img/hotels/$image->image_path") !!}"></div>
                             @endforeach
 
                        </div>

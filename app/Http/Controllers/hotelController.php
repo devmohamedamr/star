@@ -11,6 +11,8 @@ use App\hotel;
 use App\hotels_images;
 
 use App\hotel_facilities;
+use Illuminate\Support\Facades\Storage;
+use phpDocumentor\Reflection\File;
 
 class hotelController extends Controller
 {
@@ -76,6 +78,7 @@ class hotelController extends Controller
 
         $hotels->hotel_name = request('hotelName');
         $hotels->hotel_description = request('hotelDescription');
+        $hotels->country_id = request('country');
         $hotels->city_id = request('city');
         $hotels->long = request('long');
         $hotels->lat = request('lat');
@@ -133,6 +136,8 @@ class hotelController extends Controller
     public function edit($id)
     {
 
+
+
         $HotelInfo = hotel::where('id',$id)->first();
 
         $HotelImages = hotels_images::all()->where('hotel_id',$id);
@@ -142,7 +147,6 @@ class hotelController extends Controller
         $facilities =  DB::table('feature')->get();
 
         $Countries =  DB::table('country')->get();
-
 
 
         $ViewArray = [
@@ -165,7 +169,68 @@ class hotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        $this->validate($request,[
+            'hotelName' => 'required',
+            'hotelDescription' => 'required',
+            'country' => 'required',
+            'city' => 'required',
+            'facilities' => 'required'
+        ]);
+
+        $hotelInfo = hotel::find($id);
+
+        $hotel_facilities = hotel_facilities::where('hotel_id',$id)->delete();
+
+        $hotelInfo->hotel_name = request('hotelName');
+        $hotelInfo->hotel_description = request('hotelDescription');
+        $hotelInfo->country_id = request('country');
+        $hotelInfo->city_id = request('city');
+        $hotelInfo->long = request('long');
+        $hotelInfo->lat = request('lat');
+        $hotelInfo->save();
+
+        if(request('hotelImages'))
+        {
+            $hotelsImages = hotels_images::all()->where('hotel_id',$id);
+
+            foreach ($hotelsImages as $hotelsImage)
+            {
+                $imagePath = "img/hotels/".$hotelsImage->image_path;
+                @unlink($imagePath);
+            }
+
+            hotels_images::where('hotel_id',$id)->delete();
+
+            foreach (request('hotelImages') as $image)
+            {
+                $hotelsImages = new hotels_images();
+                $input['imagename'] = md5(date('U').rand(1000,100000)).'.'.$image->getClientOriginalExtension();
+
+                $destinationPath = public_path('img/hotels');
+                $image->move($destinationPath, $input['imagename']);
+
+                $hotelsImages->hotel_id = $id;
+                $hotelsImages->image_path = $input['imagename'];
+                $hotelsImages->save();
+
+            }
+        }
+
+        foreach (request('facilities') as $facility)
+        {
+            $hotelFacilities = new hotel_facilities();
+
+            $hotelFacilities->hotel_id = $id;
+            $hotelFacilities->facility_id = $facility;
+
+            $hotelFacilities->save();
+        }
+
+
+        session()->flash('add','updated success');
+
+        return redirect("hotels/$id/edit");
+
     }
 
     /**

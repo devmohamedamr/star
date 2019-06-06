@@ -72,8 +72,8 @@
                 <div class="box-body">
                     <div class="col-md-12" >
                         <div class="form-group">
-                            <input type="hidden" name="long" id="long" value="">
-                            <input type="hidden" name="lat" id="lat" value="">
+                            <input type="hidden" name="lat" id="lat" value="26.8206">
+                            <input type="hidden" name="long" id="long" value="30.8025">
                             <div id="map" style="height: 50%"></div>
                         </div>
                     </div>
